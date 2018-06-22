@@ -2,7 +2,12 @@
 
 > Very simple Redux implementation for learning purposes
 
-## Init
+[![GitHub license](https://img.shields.io/github/license/carloluis/redux-tutorial.svg)](https://github.com/carloluis/redux-tutorial/blob/master/LICENSE)
+
+
+## Start
+
+Clone this [Repo](https://github.com/carloluis/redux-tutorial.git) and use [Node.js](https://nodejs.org/) to execute:
 
 ```bash
 git clone https://github.com/carloluis/redux-tutorial.git
@@ -19,10 +24,22 @@ node index.js
 <details>
 <summary>Example</summary>
 
-Still pending...
+```js
+const createStore = require('./redux');
+
+const store = createStore(INITIAL_STATE, reducer);
+
+const unsubscribe = store.subscribe(state => {});
+
+// unsuscribe();
+```
 
 </details>
 
 ## More
 
-Check official [Redux tutorials](https://redux.js.org/).
+Check the Redux official [docs](https://redux.js.org/).
+
+## License
+
+MIT © [Carloluis](https://github.com/carloluis)
