@@ -1,0 +1,24 @@
+{
+  "name": "redux-tutorial",
+  "version": "1.0.0",
+  "description": "simple redux implementation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carloluis/redux-tutorial.git"
+  },
+  "keywords": [
+    "redux",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Carloluis Rodríguez <carloluisr@gmail.com> (https://github.com/carloluis)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carloluis/redux-tutorial/issues"
+  },
+  "homepage": "https://github.com/carloluis/redux-tutorial#readme"
+}
