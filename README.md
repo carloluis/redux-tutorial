@@ -1,6 +1,6 @@
 # redux-tutorial
 
-> Very simple Redux implementation for learning purposes
+> Simple Redux implementation for learning purposes
 
 [![GitHub license](https://img.shields.io/github/license/carloluis/redux-tutorial.svg)](https://github.com/carloluis/redux-tutorial/blob/master/LICENSE)
 
@@ -31,7 +31,7 @@ const store = createStore(INITIAL_STATE, reducer);
 
 const unsubscribe = store.subscribe(state => {});
 
-// unsuscribe();
+// unsubscribe();
 ```
 
 </details>
