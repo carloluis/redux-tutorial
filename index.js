@@ -1,6 +1,15 @@
-const createStore = require('./redux');
+const { createStore, combineReducers } = require('./redux');
 const { counterIncrement, counterDecrement, counterReset } = require('./actions');
-const reducer = require('./reducer');
+const counter = require('./reducer');
+
+function toggle(state = false, action){
+    if (action.type === 'TOGGLE') {
+        return !state;
+    }
+    return state;
+}
+
+const reducer = combineReducers({ counter, toggle });
 
 const store = createStore(undefined, reducer);
 

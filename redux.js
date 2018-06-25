@@ -1,6 +1,6 @@
 // VERY SIMPLE Redux implementation
 
-function redux(initialState, reducer) {
+function createStore(initialState, reducer) {
     let state = reducer(initialState, { type: '$REDUX_INIT' });
     let listeners = [];
 
@@ -21,4 +21,22 @@ function redux(initialState, reducer) {
     };
 }
 
-module.exports = redux;
+function combineReducers(reducers) {
+    const reducerKeys = Object.keys(reducers);
+    return (state = {}, action) => {
+        const nextState = {};
+        for (let i = 0; i < reducerKeys.length; i++) {
+            const key = reducerKeys[i];
+            const reducer = reducers[key];
+            const prevStateForKey = state[key];
+            const nextStateForKey = reducer(prevStateForKey, action);
+            nextState[key] = nextStateForKey;
+        }
+        return nextState;
+    };
+}
+
+module.exports = {
+    combineReducers,
+    createStore
+};
