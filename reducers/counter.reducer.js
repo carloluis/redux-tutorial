@@ -2,7 +2,7 @@ const {
     COUNTER_DECREMENT,
     COUNTER_INCREMENT,
     COUNTER_RESET
-} = require('./actions');
+} = require('../actions/counter.actions');
 
 const DEFAULT_STATE = 0;
 
