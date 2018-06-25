@@ -1,13 +1,8 @@
 const { createStore, combineReducers } = require('./redux');
 const { counterIncrement, counterDecrement, counterReset } = require('./actions/counter.actions');
+const { toggleFlag } = require('./actions/toggle.actions');
 const counter = require('./reducers/counter.reducer');
-
-function toggle(state = false, action){
-    if (action.type === 'TOGGLE') {
-        return !state;
-    }
-    return state;
-}
+const toggle = require('./reducers/toggle.reducer');
 
 const reducer = combineReducers({ counter, toggle });
 
@@ -24,5 +19,6 @@ store.dispatch(counterIncrement()); // -> 2
 store.dispatch(counterReset()); // -> 0
 unsubscribe();
 store.dispatch(counterIncrement());
+store.dispatch(toggleFlag());
 
-console.info('final state:', store.getState()); // -> 1
+console.info('final state:', store.getState()); // -> { counter: 1, toggle: true }

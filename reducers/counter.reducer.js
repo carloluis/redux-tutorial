@@ -6,7 +6,7 @@ const {
 
 const DEFAULT_STATE = 0;
 
-function reducer(state = DEFAULT_STATE, action) {
+function counterReducer(state = DEFAULT_STATE, action) {
 	switch (action.type) {
 		case COUNTER_INCREMENT:
 			return state + action.payload;
@@ -19,4 +19,4 @@ function reducer(state = DEFAULT_STATE, action) {
 	}
 }
 
-module.exports = reducer;
+module.exports = counterReducer;
