@@ -1,44 +1,19 @@
 const createStore = require('./redux');
-
-// actions
-
-const increment = { type: 'INCREMENT', payload: 1 };
-const decrement = { type: 'DECREMENT', payload: 1 };
-const reset = { type: 'RESET' };
-
-// reducer
-
-const DEFAULT_STATE = 0;
-
-function reducer(state = DEFAULT_STATE, action) {
-	switch (action.type) {
-		case 'INCREMENT':
-			return state + action.payload;
-		case 'DECREMENT':
-			return state - action.payload;
-		case 'RESET':
-			return DEFAULT_STATE;
-		default:
-			return state;
-	}
-}
-
-// creating the redux store
+const { counterIncrement, counterDecrement, counterReset } = require('./actions');
+const reducer = require('./reducer');
 
 const store = createStore(undefined, reducer);
 
-const unsubscribe = store.subscribe(state => console.info('state:', state));
-
-// log example
-
 console.info('initial state:', store.getState()); // -> 0
 
-store.dispatch(increment); // -> 1
-store.dispatch(decrement); // -> 0
-store.dispatch(increment); // -> 1
-store.dispatch(increment); // -> 2
-store.dispatch(reset); // -> 0
+const unsubscribe = store.subscribe(state => console.info('state:', state));
+
+store.dispatch(counterIncrement()); // -> 1
+store.dispatch(counterDecrement()); // -> 0
+store.dispatch(counterIncrement()); // -> 1
+store.dispatch(counterIncrement()); // -> 2
+store.dispatch(counterReset()); // -> 0
 unsubscribe();
-store.dispatch(increment);
+store.dispatch(counterIncrement());
 
 console.info('final state:', store.getState()); // -> 1
