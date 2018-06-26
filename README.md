@@ -18,15 +18,16 @@ node index.js
 ## Features
 
 - [x] `createStore`
-- [ ] `combineReducers`
+- [x] `combineReducers`
 - [ ] `middlewares`
 
 <details>
 <summary>Example</summary>
 
 ```js
-const createStore = require('./redux');
+const { createStore, combineReducers } = require('./redux');
 
+const reducer = combineReducers({ reducer1, reducer2, /*...*/ reducerN });
 const store = createStore(INITIAL_STATE, reducer);
 
 const unsubscribe = store.subscribe(state => {});
