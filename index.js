@@ -6,7 +6,7 @@ const toggle = require('./reducers/toggle.reducer');
 
 const reducer = combineReducers({ counter, toggle });
 
-const store = createStore(undefined, reducer);
+const store = createStore(reducer);
 
 console.info('initial state:', store.getState()); // -> 0
 

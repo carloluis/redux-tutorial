@@ -1,6 +1,6 @@
 // VERY SIMPLE Redux implementation
 
-function createStore(initialState, reducer) {
+function createStore(reducer, initialState) {
     let state = reducer(initialState, { type: '$REDUX_INIT' });
     let listeners = [];
 
