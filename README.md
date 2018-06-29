@@ -4,7 +4,6 @@
 
 [![GitHub license](https://img.shields.io/github/license/carloluis/redux-tutorial.svg)](https://github.com/carloluis/redux-tutorial/blob/master/LICENSE)
 
-
 ## Start
 
 Clone this [Repo](https://github.com/carloluis/redux-tutorial.git) and use [Node.js](https://nodejs.org/) to execute:
@@ -28,9 +27,9 @@ node index.js
 const { createStore, combineReducers } = require('./redux');
 
 const reducer = combineReducers({ reducer1, reducer2, /*...*/ reducerN });
-const store = createStore(INITIAL_STATE, reducer);
+const store = createStore(reducer, INITIAL_STATE);
 
-const unsubscribe = store.subscribe(state => {});
+const unsubscribe = store.subscribe(state => { /* */ });
 
 // unsubscribe();
 ```
