@@ -1,5 +1,5 @@
 const TOGGLE_FLAG = 'TOGGLE_FLAG';
-const toggleFlag = (payload = 1) => ({
+const toggleFlag = () => ({
     type: TOGGLE_FLAG
 });
 
