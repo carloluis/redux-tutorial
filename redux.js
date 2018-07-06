@@ -1,6 +1,10 @@
 // VERY SIMPLE Redux implementation
 
-function createStore(reducer, initialState /*, enhancer*/) {
+function createStore(reducer, initialState, enhancer) {
+    if (typeof enhancer === 'function') {
+        return enhancer(createStore)(reducer, initialState);
+    }
+
     let state = reducer(initialState, { type: '$REDUX_INIT' });
     let listeners = [];
 
@@ -9,7 +13,6 @@ function createStore(reducer, initialState /*, enhancer*/) {
             return state;
         },
         dispatch(action) {
-            // TODO: invoke enhancer middlewares before action reach the reducer
             state = reducer(state, action);
             listeners.forEach(listener => listener(state));
         },
@@ -35,7 +38,28 @@ function combineReducers(reducers) {
     };
 }
 
+function applyMiddlewares(...middlewares) {
+    return createStore => (...args) => {
+        const store = createStore(...args);
+        let dispatch = () => {};
+
+        const middlewareApi = {
+            getState: store.getState,
+            dispatch: (...args) => dispatch(...args)
+        };
+
+        const chain = middlewares.map(middleware => middleware(middlewareApi));
+        dispatch = chain.reduce((a, b) => (...args) => a(b(...args)))(store.dispatch);
+
+        return {
+            ...store,
+            dispatch
+        };
+    };
+}
+
 module.exports = {
+    applyMiddlewares,
     combineReducers,
     createStore
 };
