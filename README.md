@@ -18,7 +18,7 @@ node index.js
 
 - [x] `createStore`
 - [x] `combineReducers`
-- [ ] `middlewares`
+- [x] `middlewares`
 
 <details>
 <summary>Example</summary>
