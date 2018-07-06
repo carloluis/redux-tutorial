@@ -1,4 +1,4 @@
-const { createStore, combineReducers } = require('./redux');
+const { createStore, combineReducers, applyMiddlewares } = require('./redux');
 const { counterIncrement, counterDecrement, counterReset } = require('./actions/counter.actions');
 const { toggleFlag } = require('./actions/toggle.actions');
 const counter = require('./reducers/counter.reducer');
@@ -6,18 +6,16 @@ const toggle = require('./reducers/toggle.reducer');
 
 const reducer = combineReducers({ counter, toggle });
 
-const store = createStore(reducer);
-const _dispatch = store.dispatch;
-
-// middleware patch!
-store.dispatch = action => {
+const loggerMiddleware = ({ getState }) => next => action => {
     console.group(action.type);
-    console.info('[state]', store.getState());
-    console.info('[action]', action);
-    _dispatch(action);
-    console.info('[next state]', store.getState());
+    console.info('[current state]:', getState());
+    console.info('[action]:', action);
+    next(action);
+    console.info('[next state]:', getState());
     console.groupEnd(action.type);
 };
+
+const store = createStore(reducer, undefined, applyMiddlewares(loggerMiddleware));
 
 console.info('initial state:', store.getState()); // -> 0
 
